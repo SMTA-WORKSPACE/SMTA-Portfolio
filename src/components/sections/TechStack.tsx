@@ -6,6 +6,8 @@ import { SectionHeading } from "../ui/SectionHeading";
 
 const TECH_STACK = [
   { name: "n8n", icon: "simple-icons:n8n", color: "#EA4B71", isImage: false },
+  { name: "Make", type: "image", src: "/images/logos/MAKE.png" },
+  { name: "Monday.com", type: "image", src: "/images/logos/monday.png" },
   { name: "Go High Level", type: "image", src: "/images/logos/ghl.png" },
   { name: "Google Sheets", icon: "mdi:google-spreadsheet", color: "#34A853", isImage: false },
   { name: "Retell AI", type: "image", src: "/images/logos/retell.png" },

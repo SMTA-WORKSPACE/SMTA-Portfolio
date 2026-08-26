@@ -183,8 +183,8 @@ export const Hero = () => {
                   transition={{ duration: 4.5, repeat: Infinity }}
                   className="absolute bg-white border border-[#E5E7EB] rounded-full px-2.5 py-1.5 lg:px-3.5 lg:py-2 flex items-center gap-1.5 shadow-md -left-2 lg:-left-4 bottom-12 lg:bottom-16"
                 >
-                  <Icon icon="mdi:whatsapp" className="text-[#22C55E] w-4 h-4" />
-                  <span className="text-xs font-semibold text-[#374151]">WhatsApp AI</span>
+                  <img src="/images/logos/MAKE.png" alt="Make" className="w-4 h-4 object-contain" />
+                  <span className="text-xs font-semibold text-[#374151]">Make</span>
                 </motion.div>
 
                 <motion.div
@@ -192,8 +192,8 @@ export const Hero = () => {
                   transition={{ duration: 3.5, repeat: Infinity }}
                   className="absolute bg-white border border-[#E5E7EB] rounded-full px-2.5 py-1.5 lg:px-3.5 lg:py-2 flex items-center gap-1.5 shadow-md -right-2 lg:right-4 bottom-4 lg:bottom-6"
                 >
-                  <Icon icon="mdi:microphone-outline" className="text-[#7C3AED] w-4 h-4" />
-                  <span className="text-xs font-semibold text-[#374151]">AI Voice</span>
+                  <img src="/images/logos/monday.png" alt="Monday" className="w-4 h-4 object-contain" />
+                  <span className="text-xs font-semibold text-[#374151]">Monday</span>
                 </motion.div>
               </div>
             </motion.div>

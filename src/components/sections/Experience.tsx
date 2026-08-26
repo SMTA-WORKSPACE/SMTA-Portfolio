@@ -5,20 +5,57 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Icon } from "@iconify/react";
 
-const EXPERIENCES = [
+interface ExperienceItem {
+  dateToRender: string;
+  company: string;
+  website?: string;
+  location: string;
+  icon: string;
+  logo?: string;
+  logoClass?: string;
+  role: string;
+  description: string;
+  statusBadge: {
+    icon: string;
+    text: string;
+    color: string;
+    bgClass: string;
+  };
+}
+
+const EXPERIENCES: ExperienceItem[] = [
   {
-    date: "August 2023 – Present", // Updated date from user instruction, though user said "August 2025" in prompt, let's use prompt text literally just in case
-    dateToRender: "August 2023 – Present",
-    company: "YALPRO",
-    location: "Spain (Remote)",
-    icon: "mdi:office-building-outline",
-    role: "AI Automation & Web Development Specialist",
-    description: "Building and maintaining production-level AI automation workflows for a Spain-based SaaS platform. Responsibilities include WooCommerce post-purchase email automations, client intake systems, subscription management workflows, and internal notification systems using n8n.",
+    dateToRender: "May 2026 – Present",
+    company: "Castellan Real Estate Partners",
+    website: "https://castellanre.com/",
+    location: "Remote",
+    icon: "mdi:robot-confetti",
+    logo: "/images/logos/castellan.png",
+    logoClass: "bg-[#081a24] object-cover",
+    role: "Automation Developer",
+    description: "Designing and scaling end-to-end automation infrastructure and CRM operations. Key responsibilities include building advanced Make.com and n8n workflow scenarios, creating custom Monday.com CRM automation boards & workflow pipelines, developing autonomous AI agents, and deploying Retell AI voice agents for streamlined communication and operations.",
     statusBadge: {
       icon: "mdi:circle",
       text: "Currently Active",
       color: "text-green-500",
       bgClass: "bg-green-50 text-green-700 border-green-200"
+    }
+  },
+  {
+    dateToRender: "August 2025 – May 2026",
+    company: "YALPRO",
+    website: "https://www.yalpro.com/",
+    location: "Spain (Remote)",
+    icon: "mdi:office-building-outline",
+    logo: "/images/logos/yalpro-share.png",
+    logoClass: "bg-black object-contain p-1.5",
+    role: "AI Automation & Web Development Specialist",
+    description: "Built and maintained production-level AI automation workflows for a Spain-based SaaS platform. Responsibilities included WooCommerce post-purchase email automations, client intake systems, subscription management workflows, and internal notification systems using n8n.",
+    statusBadge: {
+      icon: "mdi:check-circle-outline",
+      text: "Completed",
+      color: "text-slate-500",
+      bgClass: "bg-slate-50 text-slate-600 border-slate-200"
     }
   },
   {
@@ -45,9 +82,6 @@ export const Experience = () => {
   });
 
   const pathLength = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
-  // Correct date fallback
-  EXPERIENCES[0].dateToRender = "August 2025 – Present";
 
   return (
     <section id="experience" className="py-24 bg-background relative">
@@ -89,9 +123,17 @@ export const Experience = () => {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ delay: 0.2, type: "spring" }}
-                    className="w-16 h-16 rounded-full bg-white border-[4px] border-secondary shadow-md flex items-center justify-center text-secondary"
+                    className="w-16 h-16 rounded-full bg-white border-[4px] border-secondary shadow-md flex items-center justify-center text-secondary overflow-hidden"
                   >
-                    <Icon icon={exp.icon} className="w-7 h-7" />
+                    {exp.logo ? (
+                      <img 
+                        src={exp.logo} 
+                        alt={exp.company} 
+                        className={`w-full h-full ${exp.logoClass || 'object-cover'}`} 
+                      />
+                    ) : (
+                      <Icon icon={exp.icon} className="w-7 h-7" />
+                    )}
                   </motion.div>
                 </div>
 
@@ -107,7 +149,19 @@ export const Experience = () => {
                     <div>
                       <h3 className="text-xl md:text-2xl mb-1">{exp.role}</h3>
                       <div className="flex flex-wrap items-center gap-3 text-text-secondary text-sm font-medium">
-                        <span className="text-primary font-bold">{exp.company}</span>
+                        {exp.website ? (
+                          <a 
+                            href={exp.website} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="text-primary font-bold hover:underline hover:text-accent transition-colors inline-flex items-center gap-1 group/link"
+                          >
+                            {exp.company}
+                            <Icon icon="mdi:external-link" className="w-3.5 h-3.5 opacity-70 group-hover/link:opacity-100 transition-opacity" />
+                          </a>
+                        ) : (
+                          <span className="text-primary font-bold">{exp.company}</span>
+                        )}
                         <span className="hidden md:inline">•</span>
                         <span className="flex items-center gap-1"><Icon icon="mdi:map-marker-outline" /> {exp.location}</span>
                         <span className="hidden md:inline">•</span>
